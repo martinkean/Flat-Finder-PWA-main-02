@@ -479,5 +479,165 @@ export function showFiltersOverlay() {
 
 // Show settings overlay
 export function showSettingsOverlay() {
-  showToast('Settings coming soon!');
+  // Create settings overlay if it doesn't exist
+  let settingsOverlay = document.querySelector('.settings-overlay');
+  
+  if (!settingsOverlay) {
+    settingsOverlay = document.createElement('div');
+    settingsOverlay.className = 'settings-overlay';
+    settingsOverlay.innerHTML = `
+      <div class="settings-header">
+        <h2>Settings</h2>
+        <button class="settings-close">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="settings-content">
+        <div class="settings-group">
+          <h3 class="settings-group-title">Account</h3>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <h3>Email Notifications</h3>
+              <p>Get updates about new properties and applications</p>
+            </div>
+            <div class="settings-row-action">
+              <label class="toggle">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <h3>Push Notifications</h3>
+              <p>Receive instant updates on your device</p>
+            </div>
+            <div class="settings-row-action">
+              <label class="toggle">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="settings-group">
+          <h3 class="settings-group-title">Privacy</h3>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <h3>Profile Visibility</h3>
+              <p>Control who can see your profile</p>
+            </div>
+            <div class="settings-row-action">
+              <label class="toggle">
+                <input type="checkbox">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <h3>Location Services</h3>
+              <p>Allow access to your location</p>
+            </div>
+            <div class="settings-row-action">
+              <label class="toggle">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="settings-group">
+          <h3 class="settings-group-title">Appearance</h3>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <h3>Dark Mode</h3>
+              <p>Switch between light and dark themes</p>
+            </div>
+            <div class="settings-row-action">
+              <label class="toggle">
+                <input type="checkbox">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="settings-group">
+          <h3 class="settings-group-title">Support</h3>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <h3>Help Center</h3>
+              <p>Get help with FlatMate</p>
+            </div>
+            <div class="settings-row-action">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <h3>Terms of Service</h3>
+              <p>Read our terms and conditions</p>
+            </div>
+            <div class="settings-row-action">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-info">
+              <h3>Privacy Policy</h3>
+              <p>Learn how we handle your data</p>
+            </div>
+            <div class="settings-row-action">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+        <div class="settings-version">
+          Version 1.0.0
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(settingsOverlay);
+    
+    // Add close button handler
+    const closeButton = settingsOverlay.querySelector('.settings-close');
+    closeButton.addEventListener('click', () => {
+      settingsOverlay.classList.remove('show');
+    });
+    
+    // Add toggle handlers
+    const toggles = settingsOverlay.querySelectorAll('.toggle input');
+    toggles.forEach(toggle => {
+      toggle.addEventListener('change', () => {
+        const setting = toggle.closest('.settings-row').querySelector('h3').textContent;
+        const status = toggle.checked ? 'enabled' : 'disabled';
+        showToast(`${setting} ${status}`);
+      });
+    });
+    
+    // Add support link handlers
+    const supportLinks = settingsOverlay.querySelectorAll('.settings-group:last-child .settings-row');
+    supportLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const title = link.querySelector('h3').textContent;
+        showToast(`${title} coming soon!`);
+      });
+    });
+  }
+  
+  // Show overlay
+  settingsOverlay.classList.add('show');
 }
