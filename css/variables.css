@@ -1,0 +1,84 @@
+/* Color Variables */
+:root {
+  /* Primary Colors */
+  --color-primary: #1ABC9C;
+  --color-primary-light: #4ECDC4;
+  --color-primary-dark: #16A085;
+  --color-primary-bg: #E8F8F5;
+  
+  /* Secondary Colors */
+  --color-secondary: #3498DB;
+  --color-secondary-light: #5DADE2;
+  --color-secondary-dark: #2874A6;
+  
+  /* Accent Colors */
+  --color-accent: #9B59B6;
+  --color-accent-light: #BB8FCE;
+  --color-accent-dark: #7D3C98;
+  
+  /* Status Colors */
+  --color-success: #2ECC71;
+  --color-success-light: #ABEBC6;
+  --color-warning: #F39C12;
+  --color-warning-light: #FAD7A0;
+  --color-error: #E74C3C;
+  --color-error-light: #F5B7B1;
+  
+  /* Neutral Colors */
+  --color-background: #F2F7F9;
+  --color-surface: #FFFFFF;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-text-lighter: #999999;
+  --color-border: #E1E8ED;
+  --color-divider: #F1F1F1;
+  
+  /* UI Element Colors */
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  
+  /* Brand Colors (Edinburgh Realty) */
+  --color-brand: #1A365D;
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 24px;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px var(--color-shadow);
+  --shadow-md: 0 4px 8px var(--color-shadow);
+  --shadow-lg: 0 8px 16px var(--color-shadow);
+  
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-md: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;  /* 18px */
+  --font-size-xl: 1.25rem;   /* 20px */
+  --font-size-xxl: 1.5rem;   /* 24px */
+  
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-loose: 1.75;
+  
+  /* Z-index levels */
+  --z-index-dropdown: 1000;
+  --z-index-modal: 2000;
+  --z-index-toast: 3000;
+}
