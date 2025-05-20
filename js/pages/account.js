@@ -530,8 +530,7 @@ function loadCurrentFlatTab(container, userProfile) {
   const chatSendButton = content.querySelector('.chat-input button');
   const chatMessages = content.querySelector('.chat-messages');
 
-  if (chat
-Input && chatSendButton && chatMessages) {
+  if (chatInput && chatSendButton && chatMessages) {
     const sendMessage = () => {
       const message = chatInput.value.trim();
       if (message) {
