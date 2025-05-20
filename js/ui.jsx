@@ -389,7 +389,7 @@ export function showFiltersOverlay() {
               <span>$150</span>
               <span>$400</span>
             </div>
-            <input type="range" min="150" max="400" step="10" value="250">
+            <input type="range" min="150" max="400" step="10" value="250" />
           </div>
         </div>
         
@@ -509,7 +509,7 @@ export function showSettingsOverlay() {
             </div>
             <div class="settings-row-action">
               <label class="toggle">
-                <input type="checkbox" checked>
+                <input type="checkbox" checked />
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -521,7 +521,7 @@ export function showSettingsOverlay() {
             </div>
             <div class="settings-row-action">
               <label class="toggle">
-                <input type="checkbox" checked>
+                <input type="checkbox" checked />
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -537,7 +537,7 @@ export function showSettingsOverlay() {
             </div>
             <div class="settings-row-action">
               <label class="toggle">
-                <input type="checkbox">
+                <input type="checkbox" />
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -549,7 +549,7 @@ export function showSettingsOverlay() {
             </div>
             <div class="settings-row-action">
               <label class="toggle">
-                <input type="checkbox" checked>
+                <input type="checkbox" checked />
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -565,7 +565,7 @@ export function showSettingsOverlay() {
             </div>
             <div class="settings-row-action">
               <label class="toggle">
-                <input type="checkbox">
+                <input type="checkbox" />
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -672,7 +672,7 @@ export function showProfileEditOverlay(userProfile) {
       </div>
       <div class="profile-edit-content">
         <div class="profile-edit-avatar">
-          <img src="${userProfile.avatar}" alt="${userProfile.name}">
+          <img src="${userProfile.avatar}" alt="${userProfile.name}" />
           <button class="change-avatar-button">
             <svg viewBox="0 0 24 24">
               <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path>
@@ -684,3 +684,10 @@ export function showProfileEditOverlay(userProfile) {
         <div class="profile-edit-form">
           <div class="form-group">
             <label>Full Name</label>
+            <input type="text" value="${userProfile.name}" />
+          </div>
+        </div>
+      </div>
+    `;
+  }
+}
