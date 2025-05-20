@@ -81,8 +81,9 @@
 /* Main content */
 .main-content {
   flex: 1;
-  overflow-y: auto; 
-  padding: var(--spacing-sm) 0;
+  overflow-y: auto;
+  padding: var(--spacing-sm) var(--spacing-sm);
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Search bar */

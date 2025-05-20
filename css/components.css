@@ -252,19 +252,19 @@
 .member-card {
   display: flex;
   align-items: center;
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm);
   background-color: var(--color-surface);
   border-radius: var(--radius-lg);
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
   box-shadow: var(--shadow-sm);
 }
 
 .member-avatar {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  margin-right: var(--spacing-md);
+  margin-right: var(--spacing-sm);
 }
 
 .member-avatar svg {
@@ -314,30 +314,30 @@
 .application-card {
   background-color: var(--color-primary-bg);
   border-radius: var(--radius-lg);
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm);
   margin-bottom: var(--spacing-md);
 }
 
 .application-header {
   display: flex;
   align-items: flex-start;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
 }
 
 .application-icon {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background-color: var(--color-primary);
-  margin-right: var(--spacing-md);
+  margin-right: var(--spacing-sm);
 }
 
 .application-icon svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   fill: white;
 }
 
@@ -363,13 +363,13 @@
 .preferences-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm);
 }
 
 .preference-card {
   background-color: var(--color-primary-bg);
   border-radius: var(--radius-md);
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm);
 }
 
 .preference-label {
