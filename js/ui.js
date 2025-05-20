@@ -487,6 +487,11 @@ export function showSettingsOverlay() {
     settingsOverlay.className = 'settings-overlay';
     settingsOverlay.innerHTML = `
       <div class="settings-header">
+        <button class="back-button" aria-label="Go back">
+          <svg viewBox="0 0 24 24">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+          </svg>
+        </button>
         <h2>Settings</h2>
         <button class="settings-close">
           <svg viewBox="0 0 24 24">
@@ -614,7 +619,13 @@ export function showSettingsOverlay() {
     
     // Add close button handler
     const closeButton = settingsOverlay.querySelector('.settings-close');
+    const backButton = settingsOverlay.querySelector('.back-button');
+    
     closeButton.addEventListener('click', () => {
+      settingsOverlay.classList.remove('show');
+    });
+    
+    backButton.addEventListener('click', () => {
       settingsOverlay.classList.remove('show');
     });
     

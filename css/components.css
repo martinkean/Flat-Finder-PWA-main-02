@@ -1263,6 +1263,28 @@ input:checked + .toggle-slider:before {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--spacing-md);
+}
+
+.settings-header .back-button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.settings-header .back-button svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.settings-header h2 {
+  margin: 0;
+  flex: 1;
 }
 
 .settings-content {
