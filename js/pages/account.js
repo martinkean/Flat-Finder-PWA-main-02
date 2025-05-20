@@ -183,7 +183,9 @@ function loadProfileTab(container, userProfile) {
   const editButton = content.querySelector('.profile-edit');
   if (editButton) {
     editButton.addEventListener('click', () => {
-      showToast('Profile editing coming soon!');
+      import('../ui.js').then(module => {
+        module.showProfileEditOverlay(userProfile);
+      });
     });
   }
 }
