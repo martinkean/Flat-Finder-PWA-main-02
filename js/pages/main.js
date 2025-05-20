@@ -1,6 +1,6 @@
 // Main page module for property browsing
 import { getFromStorage, saveToStorage, addToStorageArray } from '../storage.js';
-import { createPropertyCard, showToast, showMapOverlay } from '../ui.js';
+import { createPropertyCard, showToast, showMapOverlay } from '../ui.jsx';
 
 // Populate the main page with content
 export function populateMainPage() {
@@ -59,7 +59,7 @@ function setupHeader(container) {
   const filterButton = header.querySelector('.filter-button');
   if (filterButton) {
     filterButton.addEventListener('click', () => {
-      import('../ui.js').then(module => {
+      import('../ui.jsx').then(module => {
         module.showFiltersOverlay();
       });
     });

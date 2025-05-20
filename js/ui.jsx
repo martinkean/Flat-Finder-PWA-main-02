@@ -684,3 +684,82 @@ export function showProfileEditOverlay(userProfile) {
         <div class="profile-edit-form">
           <div class="form-group">
             <label>Full Name</label>
+            <input type="text" value="${userProfile.name}" placeholder="Enter your full name">
+          </div>
+          
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" value="${userProfile.email}" placeholder="Enter your email">
+          </div>
+          
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" value="${userProfile.phone}" placeholder="Enter your phone number">
+          </div>
+          
+          <div class="form-group">
+            <label>Bio</label>
+            <textarea placeholder="Tell us about yourself">${userProfile.bio}</textarea>
+          </div>
+          
+          <div class="form-group">
+            <label>University</label>
+            <input type="text" value="${userProfile.university}" placeholder="Enter your university">
+          </div>
+          
+          <div class="form-group">
+            <label>Course</label>
+            <input type="text" value="${userProfile.course}" placeholder="Enter your course">
+          </div>
+          
+          <div class="form-group">
+            <label>Year of Study</label>
+            <select>
+              <option value="1" ${userProfile.year === 1 ? 'selected' : ''}>First Year</option>
+              <option value="2" ${userProfile.year === 2 ? 'selected' : ''}>Second Year</option>
+              <option value="3" ${userProfile.year === 3 ? 'selected' : ''}>Third Year</option>
+              <option value="4" ${userProfile.year === 4 ? 'selected' : ''}>Fourth Year</option>
+              <option value="5" ${userProfile.year === 5 ? 'selected' : ''}>Fifth Year</option>
+              <option value="6" ${userProfile.year === 6 ? 'selected' : ''}>Sixth Year</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="profile-edit-actions">
+          <button class="secondary-button">Cancel</button>
+          <button class="primary-button">Save Changes</button>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(profileEditOverlay);
+    
+    // Add back button handler
+    const backButton = profileEditOverlay.querySelector('.back-button');
+    backButton.addEventListener('click', () => {
+      profileEditOverlay.classList.remove('show');
+    });
+    
+    // Add cancel button handler
+    const cancelButton = profileEditOverlay.querySelector('.secondary-button');
+    cancelButton.addEventListener('click', () => {
+      profileEditOverlay.classList.remove('show');
+    });
+    
+    // Add save button handler
+    const saveButton = profileEditOverlay.querySelector('.primary-button');
+    saveButton.addEventListener('click', () => {
+      showToast('Profile updated successfully');
+      profileEditOverlay.classList.remove('show');
+    });
+    
+    // Add change avatar button handler
+    const changeAvatarButton = profileEditOverlay.querySelector('.change-avatar-button');
+    changeAvatarButton.addEventListener('click', () => {
+      showToast('Avatar change coming soon!');
+    });
+  }
+  
+  // Show overlay
+  profileEditOverlay.classList.add('show');
+}
