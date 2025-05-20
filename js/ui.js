@@ -219,7 +219,7 @@ function addPropertyCardEventListeners(card) {
       dislikeProperty(propertyId, card);
     } else {
       // Reset position
-      card.style.transform = '';
+      card.style.transform = ``;
       card.classList.remove('swiping-right', 'swiping-left', 'swiping-up');
     }
   });
