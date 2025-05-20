@@ -126,7 +126,8 @@ function addMapButton(container) {
   
   // Add event listener
   mapButton.addEventListener('click', () => {
-    showToast('Map view is coming soon!');
+    const properties = getFromStorage('properties') || [];
+    showMapOverlay(properties);
   });
   
   // Add to container

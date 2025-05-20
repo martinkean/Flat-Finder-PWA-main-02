@@ -220,6 +220,72 @@ function showPropertyDetails(propertyId) {
   });
 }
 
+// Show map overlay
+export function showMapOverlay(properties) {
+  // Create map overlay if it doesn't exist
+  let mapOverlay = document.querySelector('.map-overlay');
+  
+  if (!mapOverlay) {
+    mapOverlay = document.createElement('div');
+    mapOverlay.className = 'map-overlay';
+    mapOverlay.innerHTML = `
+      <div class="map-header">
+        <h2>Available Flats</h2>
+        <button class="map-close">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="map-content">
+        <img src="https://images.pexels.com/photos/16047356/pexels-photo-16047356.jpeg" 
+             alt="Map of North Dunedin"
+             style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+    `;
+    
+    document.body.appendChild(mapOverlay);
+    
+    // Add close button handler
+    const closeButton = mapOverlay.querySelector('.map-close');
+    closeButton.addEventListener('click', () => {
+      mapOverlay.classList.remove('show');
+    });
+  }
+  
+  // Clear existing markers
+  const mapContent = mapOverlay.querySelector('.map-content');
+  const existingMarkers = mapContent.querySelectorAll('.map-marker');
+  existingMarkers.forEach(marker => marker.remove());
+  
+  // Add property markers
+  properties.forEach(property => {
+    const marker = document.createElement('div');
+    marker.className = 'map-marker';
+    marker.innerHTML = `
+      <div class="map-marker-content">
+        <div class="map-marker-price">${property.price}</div>
+        <div>${property.features.beds} beds</div>
+      </div>
+    `;
+    
+    // Random position for demo - in real app would use actual coordinates
+    const top = 20 + Math.random() * 60;
+    const left = 20 + Math.random() * 60;
+    marker.style.top = `${top}%`;
+    marker.style.left = `${left}%`;
+    
+    marker.addEventListener('click', () => {
+      showPropertyDetails(property.id);
+    });
+    
+    mapContent.appendChild(marker);
+  });
+  
+  // Show overlay
+  mapOverlay.classList.add('show');
+}
+
 // Show a toast notification
 export function showToast(message, duration = 3000) {
   // Remove any existing toast
