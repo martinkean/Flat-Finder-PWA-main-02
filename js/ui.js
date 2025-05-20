@@ -363,3 +363,116 @@ export function createLoader() {
   `;
   return loader;
 }
+
+// Show filters overlay
+export function showFiltersOverlay() {
+  // Create filters overlay if it doesn't exist
+  let filtersOverlay = document.querySelector('.filters-overlay');
+  
+  if (!filtersOverlay) {
+    filtersOverlay = document.createElement('div');
+    filtersOverlay.className = 'filters-overlay';
+    filtersOverlay.innerHTML = `
+      <div class="filters-header">
+        <h2>Filters</h2>
+        <button class="filters-close">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="filters-content">
+        <div class="filter-group">
+          <h3 class="filter-group-title">Price Range (per week)</h3>
+          <div class="filter-range">
+            <div class="filter-range-values">
+              <span>$150</span>
+              <span>$400</span>
+            </div>
+            <input type="range" min="150" max="400" step="10" value="250">
+          </div>
+        </div>
+        
+        <div class="filter-group">
+          <h3 class="filter-group-title">Bedrooms</h3>
+          <div class="filter-options">
+            <button class="filter-option">2+</button>
+            <button class="filter-option">3+</button>
+            <button class="filter-option selected">4+</button>
+            <button class="filter-option">5+</button>
+            <button class="filter-option">6+</button>
+          </div>
+        </div>
+        
+        <div class="filter-group">
+          <h3 class="filter-group-title">Location</h3>
+          <div class="filter-options">
+            <button class="filter-option selected">North Dunedin</button>
+            <button class="filter-option">Central Dunedin</button>
+            <button class="filter-option">South Dunedin</button>
+            <button class="filter-option">St Clair</button>
+          </div>
+        </div>
+        
+        <div class="filter-group">
+          <h3 class="filter-group-title">Features</h3>
+          <div class="filter-options">
+            <button class="filter-option">Heat Pump</button>
+            <button class="filter-option selected">Furnished</button>
+            <button class="filter-option">Double Glazed</button>
+            <button class="filter-option">Fiber Internet</button>
+            <button class="filter-option">Pets Allowed</button>
+          </div>
+        </div>
+        
+        <div class="filter-group">
+          <h3 class="filter-group-title">Agency</h3>
+          <div class="filter-options">
+            <button class="filter-option selected">Edinburgh</button>
+            <button class="filter-option">Cutlers</button>
+            <button class="filter-option">Metro</button>
+            <button class="filter-option">Student Services</button>
+          </div>
+        </div>
+      </div>
+      <div class="filters-footer">
+        <button class="reset-button">Reset All</button>
+        <button class="apply-button">Apply Filters</button>
+      </div>
+    `;
+    
+    document.body.appendChild(filtersOverlay);
+    
+    // Add close button handler
+    const closeButton = filtersOverlay.querySelector('.filters-close');
+    closeButton.addEventListener('click', () => {
+      filtersOverlay.classList.remove('show');
+    });
+    
+    // Add filter option handlers
+    const filterOptions = filtersOverlay.querySelectorAll('.filter-option');
+    filterOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        option.classList.toggle('selected');
+      });
+    });
+    
+    // Add button handlers
+    const resetButton = filtersOverlay.querySelector('.reset-button');
+    const applyButton = filtersOverlay.querySelector('.apply-button');
+    
+    resetButton.addEventListener('click', () => {
+      filterOptions.forEach(option => option.classList.remove('selected'));
+      const rangeInput = filtersOverlay.querySelector('input[type="range"]');
+      if (rangeInput) rangeInput.value = 250;
+    });
+    
+    applyButton.addEventListener('click', () => {
+      filtersOverlay.classList.remove('show');
+      showToast('Filters applied');
+    });
+  }
+  
+  // Show overlay
+  filtersOverlay.classList.add('show');
+}

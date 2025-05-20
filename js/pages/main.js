@@ -54,6 +54,16 @@ function setupHeader(container) {
   
   // Add to container
   container.appendChild(header);
+  
+  // Add filter button handler
+  const filterButton = header.querySelector('.filter-button');
+  if (filterButton) {
+    filterButton.addEventListener('click', () => {
+      import('../ui.js').then(module => {
+        module.showFiltersOverlay();
+      });
+    });
+  }
 }
 
 // Set up property cards
