@@ -43,69 +43,29 @@ function setupHeader(container) {
         </svg>
       </button>
       <div class="group-dropdown-content" id="groupDropdown">
-        <div class="group-item active">
-          <div class="group-item-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
-            </svg>
-          </div>
+        <div class="group-item">
           <div class="group-item-info">
-            <div class="group-item-name">Survey Squad</div>
-            <div class="group-item-details">
-              <span>6 members</span>
-              <span>•</span>
-              <span>$250/week</span>
-            </div>
+            <div class="group-item-name">Group 1</div>
+            <div class="group-item-members">6 members</div>
           </div>
-          <div class="group-item-status status-ready">Ready</div>
         </div>
         <div class="group-item">
-          <div class="group-item-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
-            </svg>
-          </div>
           <div class="group-item-info">
             <div class="group-item-name">Castle Breathers</div>
-            <div class="group-item-details">
-              <span>5 members</span>
-              <span>•</span>
-              <span>$280/week</span>
-            </div>
+            <div class="group-item-members">5 members</div>
           </div>
-          <div class="group-item-status status-pending">Pending</div>
         </div>
         <div class="group-item">
-          <div class="group-item-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
-            </svg>
-          </div>
           <div class="group-item-info">
-            <div class="group-item-name">Leith Legends</div>
-            <div class="group-item-details">
-              <span>4 members</span>
-              <span>•</span>
-              <span>$220/week</span>
-            </div>
+            <div class="group-item-name">Group 3</div>
+            <div class="group-item-members">3 members</div>
           </div>
-          <div class="group-item-status status-notstarted">Not Started</div>
         </div>
         <div class="group-item">
-          <div class="group-item-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
-            </svg>
-          </div>
           <div class="group-item-info">
-            <div class="group-item-name">Dundas Dwellers</div>
-            <div class="group-item-details">
-              <span>6 members</span>
-              <span>•</span>
-              <span>$260/week</span>
-            </div>
+            <div class="group-item-name">Group 4</div>
+            <div class="group-item-members">8 members</div>
           </div>
-          <div class="group-item-status status-pending">Pending</div>
         </div>
       </div>
     </div>
