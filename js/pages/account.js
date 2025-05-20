@@ -1,6 +1,6 @@
 // Account page module
 import { getFromStorage, saveToStorage } from '../storage.js';
-import { showToast } from '../ui.js';
+import { showToast, showSettingsOverlay } from '../ui.js';
 
 // Populate the account page with content
 export function populateAccountPage() {

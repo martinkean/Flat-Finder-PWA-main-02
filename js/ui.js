@@ -476,3 +476,8 @@ export function showFiltersOverlay() {
   // Show overlay
   filtersOverlay.classList.add('show');
 }
+
+// Show settings overlay
+export function showSettingsOverlay() {
+  showToast('Settings coming soon!');
+}
