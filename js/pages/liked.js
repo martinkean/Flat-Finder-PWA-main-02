@@ -1,6 +1,6 @@
 // Liked page module for saved properties
 import { getFromStorage, saveToStorage } from '../storage.js';
-import { createPropertyCard, showToast } from '../ui.js';
+import { createPropertyCard, showToast } from '../ui.jsx';
 
 // Populate the liked page with content
 export function populateLikedPage() {
