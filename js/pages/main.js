@@ -132,11 +132,26 @@ function addMapButton(container) {
   // Add map container
   const mapContainer = document.createElement('div');
   mapContainer.id = 'property-map';
-  mapContainer.className = 'property-map hidden';
+  mapContainer.className = 'property-map';
+  mapContainer.innerHTML = `
+    <div class="map-header">
+      <h2>Properties Map</h2>
+      <button class="map-close" aria-label="Close map">
+        <svg viewBox="0 0 24 24">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+        </svg>
+      </button>
+    </div>
+    <div id="map-container" class="map-container"></div>
+  `;
   container.appendChild(mapContainer);
   
   // Add event listener
   mapButton.addEventListener('click', () => toggleMap(container));
+  
+  // Add close button listener
+  const closeButton = mapContainer.querySelector('.map-close');
+  closeButton.addEventListener('click', () => toggleMap(container));
   
   // Add to container
   container.appendChild(mapButton);
@@ -145,17 +160,20 @@ function addMapButton(container) {
 // Toggle map view
 function toggleMap(container) {
   const mapContainer = container.querySelector('#property-map');
-  const isHidden = mapContainer.classList.contains('hidden');
+  const mapButton = container.querySelector('.map-button');
+  const isHidden = !mapContainer.classList.contains('visible');
   
   if (isHidden) {
     // Show map
-    mapContainer.classList.remove('hidden');
+    mapContainer.classList.add('visible');
+    mapButton.classList.add('hidden');
     if (!map) {
-      map = initMap(mapContainer);
+      map = initMap(mapContainer.querySelector('#map-container'));
     }
   } else {
     // Hide map and destroy instance
-    mapContainer.classList.add('hidden');
+    mapContainer.classList.remove('visible');
+    mapButton.classList.remove('hidden');
     if (map) {
       map.remove();
       map = null;
