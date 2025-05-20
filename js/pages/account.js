@@ -265,7 +265,7 @@ function loadSmartVaultTab(container, userProfile) {
       </div>
     </div>
     <div class="signature-area">
-      <img src="https://images.pexels.com/photos/5945601/pexels-photo-5945601.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Signature" width="200">
+      <img src="https://images.pexels.com/photos/4101143/pexels-photo-4101143.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Digital Signature" width="200" style="max-width: 100%; height: auto; object-fit: contain;">
     </div>
   `;
   documentsContainer.appendChild(signatureSection);
