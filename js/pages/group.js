@@ -1,6 +1,6 @@
 // Group page module
 import { getFromStorage, saveToStorage } from '../storage.js';
-import { showToast } from '../ui.jsx';
+import { showToast } from '../ui.js';
 
 // Populate the group page with content
 export function populateGroupPage() {
