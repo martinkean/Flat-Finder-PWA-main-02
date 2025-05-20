@@ -4,6 +4,9 @@ import { createPropertyCard, showToast } from '../ui.js';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
+// Store map instance globally
+let map = null;
+
 // Populate the main page with content
 export function populateMainPage() {
   console.log('Populating main page...');
@@ -126,14 +129,6 @@ function addMapButton(container) {
     <span>Map</span>
   `;
   
-  // Add event listener
-  mapButton.addEventListener('click', () => {
-    showToast('Map view is coming soon!');
-  });
-  
-  // Add to container
-  container.appendChild(mapButton);
-  
   // Add map container
   const mapContainer = document.createElement('div');
   mapContainer.id = 'property-map';
@@ -142,6 +137,9 @@ function addMapButton(container) {
   
   // Add event listener
   mapButton.addEventListener('click', () => toggleMap(container));
+  
+  // Add to container
+  container.appendChild(mapButton);
 }
 
 // Toggle map view
@@ -152,10 +150,16 @@ function toggleMap(container) {
   if (isHidden) {
     // Show map
     mapContainer.classList.remove('hidden');
-    initMap(mapContainer);
+    if (!map) {
+      map = initMap(mapContainer);
+    }
   } else {
-    // Hide map
+    // Hide map and destroy instance
     mapContainer.classList.add('hidden');
+    if (map) {
+      map.remove();
+      map = null;
+    }
   }
 }
 
@@ -165,12 +169,12 @@ function initMap(container) {
   const properties = getFromStorage('properties') || [];
   
   // Create map centered on Dunedin
-  const map = L.map(container).setView([-45.8742, 170.5036], 15);
+  const newMap = L.map(container).setView([-45.8742, 170.5036], 15);
   
   // Add OpenStreetMap tiles
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
+  }).addTo(newMap);
   
   // Add markers for each property
   properties.forEach(property => {
@@ -180,7 +184,7 @@ function initMap(container) {
     const lng = 170.5036 + (Math.random() - 0.5) * 0.01;
     
     const marker = L.marker([lat, lng])
-      .addTo(map)
+      .addTo(newMap)
       .bindPopup(`
         <div class="map-popup">
           <h3>${property.title}</h3>
@@ -189,6 +193,8 @@ function initMap(container) {
         </div>
       `);
   });
+
+  return newMap;
 }
 
 // Like a property
