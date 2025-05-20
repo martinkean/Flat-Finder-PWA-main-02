@@ -36,7 +36,7 @@ function setupHeader(container) {
       <h1 class="header-title">Group Dashboard</h1>
     </div>
     <div class="header-actions group-dropdown">
-      <button class="primary-button" id="select-group">
+      <button id="select-group">
         Select Group
         <svg viewBox="0 0 24 24">
           <path d="M7 10l5 5 5-5H7z"></path>
@@ -44,44 +44,24 @@ function setupHeader(container) {
       </button>
       <div class="group-dropdown-content" id="groupDropdown">
         <div class="group-item">
-          <div class="group-item-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
-            </svg>
-          </div>
           <div class="group-item-info">
             <div class="group-item-name">Group 1</div>
             <div class="group-item-members">6 members</div>
           </div>
         </div>
         <div class="group-item">
-          <div class="group-item-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
-            </svg>
-          </div>
           <div class="group-item-info">
             <div class="group-item-name">Castle Breathers</div>
             <div class="group-item-members">5 members</div>
           </div>
         </div>
         <div class="group-item">
-          <div class="group-item-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
-            </svg>
-          </div>
           <div class="group-item-info">
             <div class="group-item-name">Group 3</div>
             <div class="group-item-members">3 members</div>
           </div>
         </div>
         <div class="group-item">
-          <div class="group-item-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
-            </svg>
-          </div>
           <div class="group-item-info">
             <div class="group-item-name">Group 4</div>
             <div class="group-item-members">8 members</div>
@@ -99,8 +79,10 @@ function setupHeader(container) {
   if (selectGroupButton) {
     selectGroupButton.addEventListener('click', () => {
       const dropdown = document.getElementById('groupDropdown');
+      const groupDropdown = document.querySelector('.group-dropdown');
       if (dropdown) {
         dropdown.classList.toggle('show');
+        groupDropdown.classList.toggle('active');
       }
     });
   }
@@ -109,13 +91,16 @@ function setupHeader(container) {
   document.addEventListener('click', (e) => {
     const dropdown = document.getElementById('groupDropdown');
     const selectButton = document.getElementById('select-group');
+    const groupDropdown = document.querySelector('.group-dropdown');
     
     if (!dropdown || !selectButton) return;
     
     if (selectButton.contains(e.target)) {
       dropdown.classList.toggle('show');
+      groupDropdown.classList.toggle('active');
     } else if (!dropdown.contains(e.target)) {
       dropdown.classList.remove('show');
+      groupDropdown.classList.remove('active');
     }
   });
   
