@@ -1,11 +1,6 @@
 // Main page module for property browsing
 import { getFromStorage, saveToStorage, addToStorageArray } from '../storage.js';
 import { createPropertyCard, showToast } from '../ui.js';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-
-// Store map instance globally
-let map = null;
 
 // Populate the main page with content
 export function populateMainPage() {
@@ -129,90 +124,13 @@ function addMapButton(container) {
     <span>Map</span>
   `;
   
-  // Add map container
-  const mapContainer = document.createElement('div');
-  mapContainer.id = 'property-map';
-  mapContainer.className = 'property-map';
-  mapContainer.innerHTML = `
-    <div class="map-header">
-      <h2>Properties Map</h2>
-      <button class="map-close" aria-label="Close map">
-        <svg viewBox="0 0 24 24">
-          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
-        </svg>
-      </button>
-    </div>
-    <div id="map-container" class="map-container"></div>
-  `;
-  container.appendChild(mapContainer);
-  
   // Add event listener
-  mapButton.addEventListener('click', () => toggleMap(container));
-  
-  // Add close button listener
-  const closeButton = mapContainer.querySelector('.map-close');
-  closeButton.addEventListener('click', () => toggleMap(container));
+  mapButton.addEventListener('click', () => {
+    showToast('Map view is coming soon!');
+  });
   
   // Add to container
   container.appendChild(mapButton);
-}
-
-// Toggle map view
-function toggleMap(container) {
-  const mapContainer = container.querySelector('#property-map');
-  const mapButton = container.querySelector('.map-button');
-  const isHidden = !mapContainer.classList.contains('visible');
-  
-  if (isHidden) {
-    // Show map
-    mapContainer.classList.add('visible');
-    mapButton.classList.add('hidden');
-    if (!map) {
-      map = initMap(mapContainer.querySelector('#map-container'));
-    }
-  } else {
-    // Hide map and destroy instance
-    mapContainer.classList.remove('visible');
-    mapButton.classList.remove('hidden');
-    if (map) {
-      map.remove();
-      map = null;
-    }
-  }
-}
-
-// Initialize map
-function initMap(container) {
-  // Get properties
-  const properties = getFromStorage('properties') || [];
-  
-  // Create map centered on Dunedin
-  const newMap = L.map(container).setView([-45.8742, 170.5036], 15);
-  
-  // Add OpenStreetMap tiles
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(newMap);
-  
-  // Add markers for each property
-  properties.forEach(property => {
-    // In a real app, you would use actual coordinates
-    // Here we're adding some random offset for demonstration
-    const lat = -45.8742 + (Math.random() - 0.5) * 0.01;
-    const lng = 170.5036 + (Math.random() - 0.5) * 0.01;
-    
-    const marker = L.marker([lat, lng])
-      .addTo(newMap)
-      .bindPopup(`
-        <div class="map-popup">
-          <h3>${property.title}</h3>
-          <p>${property.price}</p>
-          <button onclick="showPropertyDetails(${property.id})">View Details</button>
-        </div>
-      `);
-  });
-
-  return newMap;
 }
 
 // Like a property
