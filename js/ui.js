@@ -257,9 +257,7 @@ export function showMapOverlay(properties) {
         </button>
       </div>
       <div class="map-content">
-        <img src="https://images.pexels.com/photos/16047356/pexels-photo-16047356.jpeg" 
-             alt="Map of North Dunedin"
-             style="width: 100%; height: 100%; object-fit: cover;">
+        <div id="map" class="map-container"></div>
       </div>
     `;
     
@@ -277,28 +275,40 @@ export function showMapOverlay(properties) {
   const existingMarkers = mapContent.querySelectorAll('.map-marker');
   existingMarkers.forEach(marker => marker.remove());
   
+  // Initialize map centered on North Dunedin
+  const map = L.map('map').setView([-45.8644, 170.5144], 15);
+  
+  // Add OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+  
   // Add property markers
   properties.forEach(property => {
-    const marker = document.createElement('div');
-    marker.className = 'map-marker';
-    marker.innerHTML = `
+    // Create custom marker content
+    const markerContent = `
       <div class="map-marker-content">
         <div class="map-marker-price">${property.price}</div>
         <div>${property.features.beds} beds</div>
       </div>
     `;
     
-    // Random position for demo - in real app would use actual coordinates
-    const top = 20 + Math.random() * 60;
-    const left = 20 + Math.random() * 60;
-    marker.style.top = `${top}%`;
-    marker.style.left = `${left}%`;
+    // Create marker with custom icon
+    const marker = L.marker(
+      // Random positions around North Dunedin for demo
+      [-45.8644 + (Math.random() - 0.5) * 0.01, 
+       170.5144 + (Math.random() - 0.5) * 0.01],
+      {
+        icon: L.divIcon({
+          className: 'map-marker',
+          html: markerContent
+        })
+      }
+    ).addTo(map);
     
-    marker.addEventListener('click', () => {
+    marker.on('click', () => {
       showPropertyDetails(property.id);
     });
-    
-    mapContent.appendChild(marker);
   });
   
   // Show overlay
