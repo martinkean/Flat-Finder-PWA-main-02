@@ -82,7 +82,7 @@
 .main-content {
   flex: 1;
   overflow-y: auto;
-  padding: var(--spacing-sm) var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
   -webkit-overflow-scrolling: touch;
 }
 
