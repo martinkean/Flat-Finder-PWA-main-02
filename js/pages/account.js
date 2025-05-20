@@ -369,6 +369,10 @@ function loadCurrentFlatTab(container, userProfile) {
   const content = document.createElement('div');
   content.className = 'main-content';
   content.innerHTML = `
+    <div class="section-header">
+      <h2 class="section-title">Current Flat</h2>
+    </div>
+
     <div class="property-card list-view">
       <div class="property-image">
         <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg" alt="530 Leith Street">
@@ -421,9 +425,127 @@ function loadCurrentFlatTab(container, userProfile) {
         </button>
       </div>
     </div>
+    
+    <div class="section">
+      <div class="document-card">
+        <div class="document-header">
+          <h3 class="document-title">Contract Details</h3>
+          <div class="document-actions">
+            <button class="icon-button" aria-label="Download contract">
+              <svg viewBox="0 0 24 24">
+                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="document-row">
+          <div class="document-item">
+            <div class="document-icon pdf">
+              <svg viewBox="0 0 24 24">
+                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"></path>
+              </svg>
+            </div>
+            <div class="document-info">
+              <p class="document-name">Tenancy Agreement 2024.pdf</p>
+              <p class="document-meta">Valid until Dec 31, 2024</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 class="section-title">Upcoming Events</h3>
+      <div class="document-card">
+        <div class="document-row">
+          <div class="document-item">
+            <div class="document-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"></path>
+              </svg>
+            </div>
+            <div class="document-info">
+              <p class="document-name">Property Inspection</p>
+              <p class="document-meta">March 15, 2024 at 10:00 AM</p>
+            </div>
+          </div>
+        </div>
+        <div class="document-row">
+          <div class="document-item">
+            <div class="document-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M22 5.72l-4.6-3.86-1.29 1.53 4.6 3.86L22 5.72zM7.88 3.39L6.6 1.86 2 5.71l1.29 1.53 4.59-3.85zM12.5 8H11v6l4.75 2.85.75-1.23-4-2.37V8zM12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path>
+              </svg>
+            </div>
+            <div class="document-info">
+              <p class="document-name">Heat Pump Service</p>
+              <p class="document-meta">March 20, 2024 at 2:00 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 class="section-title">Landlord Chat</h3>
+      <div class="chat-container">
+        <div class="chat-messages">
+          <div class="message message-received">
+            <p>Hi everyone, just a reminder about the inspection next week. Please make sure all common areas are tidy.</p>
+            <p class="message-meta">John (Landlord), 2 days ago</p>
+          </div>
+          <div class="message message-sent">
+            <p>Thanks for the reminder! We'll make sure everything is ready.</p>
+            <p class="message-meta">Me, 1 day ago</p>
+          </div>
+          <div class="message message-received">
+            <p>Great! Also, the heat pump service has been scheduled for March 20th.</p>
+            <p class="message-meta">John (Landlord), 1 day ago</p>
+          </div>
+        </div>
+        <div class="chat-input">
+          <input type="text" placeholder="Type a message..." aria-label="Type a message">
+          <button aria-label="Send message">
+            <svg viewBox="0 0 24 24">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
   `;
   
   container.appendChild(content);
+
+  // Add chat input handler
+  const chatInput = content.querySelector('.chat-input input');
+  const chatSendButton = content.querySelector('.chat-input button');
+  const chatMessages = content.querySelector('.chat-messages');
+
+  if (chatInput && chatSendButton && chatMessages) {
+    const sendMessage = () => {
+      const message = chatInput.value.trim();
+      if (message) {
+        const messageElement = document.createElement('div');
+        messageElement.className = 'message message-sent';
+        const now = new Date();
+        messageElement.innerHTML = `
+          <p>${message}</p>
+          <p class="message-meta">Me, just now</p>
+        `;
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        chatInput.value = '';
+      }
+    };
+
+    chatSendButton.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  }
 
   // Add event listeners for the action buttons
   const infoButton = content.querySelector('.action-button.info');
