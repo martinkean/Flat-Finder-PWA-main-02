@@ -530,7 +530,8 @@ function loadCurrentFlatTab(container, userProfile) {
   const chatSendButton = content.querySelector('.chat-input button');
   const chatMessages = content.querySelector('.chat-messages');
 
-  if (chatInput && chatSendButton && chatMessages) {
+  if (chat
+Input && chatSendButton && chatMessages) {
     const sendMessage = () => {
       const message = chatInput.value.trim();
       if (message) {
@@ -538,4 +539,20 @@ function loadCurrentFlatTab(container, userProfile) {
         messageElement.className = 'message message-sent';
         const now = new Date();
         messageElement.innerHTML = `
-          <p
+          <p>${message}</p>
+          <p class="message-meta">Me, just now</p>
+        `;
+        chatMessages.appendChild(messageElement);
+        chatInput.value = '';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+    };
+
+    chatSendButton.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  }
+}
