@@ -261,10 +261,6 @@
   color: var(--color-error);
 }
 
-.action-button.apply {
-  color: var(--color-success);
-}
-
 .action-button svg {
   width: 28px;
   height: 28px;
