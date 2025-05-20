@@ -55,9 +55,9 @@
 
 .card-stack {
   position: relative;
-  height: 450px;
+  height: 400px;
   margin: 0 auto;
-  max-width: 320px;
+  max-width: 300px;
   padding: 0 var(--spacing-sm);
 }
 
@@ -86,7 +86,7 @@
 
 .property-image {
   position: relative;
-  height: 200px;
+  height: 180px;
   overflow: hidden;
 }
 
@@ -724,25 +724,25 @@ input:checked + .toggle-slider:before {
 /* Map button */
 .map-button {
   position: fixed;
-  bottom: calc(65px + env(safe-area-inset-bottom) + var(--spacing-md));
+  bottom: calc(65px + env(safe-area-inset-bottom) + var(--spacing-xs));
   left: 50%;
   transform: translateX(-50%);
   background-color: var(--color-surface);
   color: var(--color-text);
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
   z-index: 5;
-  height: 44px;
-  min-width: 120px;
+  height: 36px;
+  min-width: 100px;
 }
 
 .map-button svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   fill: currentColor;
 }
 
