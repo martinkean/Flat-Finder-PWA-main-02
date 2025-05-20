@@ -55,9 +55,10 @@
 
 .card-stack {
   position: relative;
-  height: 500px;
+  height: 450px;
   margin: 0 auto;
-  max-width: 360px;
+  max-width: 320px;
+  padding: 0 var(--spacing-sm);
 }
 
 .property-card.stack {
@@ -85,7 +86,7 @@
 
 .property-image {
   position: relative;
-  height: 250px;
+  height: 200px;
   overflow: hidden;
 }
 
@@ -132,7 +133,7 @@
 }
 
 .property-info {
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm);
 }
 
 .property-title {
@@ -194,13 +195,13 @@
 .property-actions {
   display: flex;
   justify-content: space-between;
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
   border-top: 1px solid var(--color-divider);
 }
 
 .action-button {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
