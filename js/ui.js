@@ -476,3 +476,100 @@ export function showFiltersOverlay() {
   // Show overlay
   filtersOverlay.classList.add('show');
 }
+
+// Show property details
+export function showPropertyDetails(property) {
+  if (!property) return;
+  
+  // Create overlay if it doesn't exist
+  let detailsOverlay = document.querySelector('.property-details-overlay');
+  
+  if (!detailsOverlay) {
+    detailsOverlay = document.createElement('div');
+    detailsOverlay.className = 'property-details-overlay';
+    document.body.appendChild(detailsOverlay);
+  }
+  
+  // Update overlay content
+  detailsOverlay.innerHTML = `
+    <div class="property-details-header">
+      <div class="header-content">
+        <h2 class="property-title">${property.title}</h2>
+        <p class="property-price">${property.price}</p>
+      </div>
+      <button class="property-details-close">
+        <svg viewBox="0 0 24 24">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="property-details-content">
+      <div class="property-details-gallery">
+        <img src="${property.image}" alt="${property.title}">
+        <img src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg" alt="Living Room">
+        <img src="https://images.pexels.com/photos/3935325/pexels-photo-3935325.jpeg" alt="Kitchen">
+        <img src="https://images.pexels.com/photos/6585757/pexels-photo-6585757.jpeg" alt="Bedroom">
+      </div>
+      
+      <div class="property-details-info">
+        <div class="property-details-stats">
+          <div class="property-details-stat">
+            <div class="property-details-stat-value">${property.features.beds}</div>
+            <div class="property-details-stat-label">Beds</div>
+          </div>
+          <div class="property-details-stat">
+            <div class="property-details-stat-value">${property.features.showers}</div>
+            <div class="property-details-stat-label">Baths</div>
+          </div>
+          <div class="property-details-stat">
+            <div class="property-details-stat-value">${property.features.parking}</div>
+            <div class="property-details-stat-label">Parks</div>
+          </div>
+          <div class="property-details-stat">
+            <div class="property-details-stat-value">${property.rating}</div>
+            <div class="property-details-stat-label">Rating</div>
+          </div>
+        </div>
+        
+        <div class="property-details-description">
+          <h3 class="section-title">About this property</h3>
+          <p class="description-text">Recently renovated student flat in prime North Dunedin location. Features include:</p>
+          <ul class="feature-list">
+            <li>Heat pumps in all bedrooms</li>
+            <li>Full insulation throughout</li>
+            <li>Modern appliances</li>
+            <li>Newly rewired and replumbed (2023)</li>
+            <li>Fiber internet ready</li>
+            <li>Security system installed</li>
+          </ul>
+        </div>
+        
+        <div class="property-details-agency">
+          <div class="property-details-agency-logo">
+            ${property.agency}
+          </div>
+          <div>
+            <h3>${property.agency} Realty</h3>
+            <p>Premier student accommodation provider</p>
+            <button class="contact-agent-btn">Contact Agent</button>
+          </div>
+        </div>
+        
+        <div class="property-details-meta">
+          <div class="meta-item">
+            <svg viewBox="0 0 24 24">
+              <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+            </svg>
+            Listed 2 days ago
+          </div>
+          <div class="meta-item">
+            <svg viewBox="0 0 24 24">
+              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+            </svg>
+            128 people interested
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
