@@ -369,23 +369,75 @@ function loadCurrentFlatTab(container, userProfile) {
   const content = document.createElement('div');
   content.className = 'main-content';
   content.innerHTML = `
-    <div class="empty-state">
-      <svg viewBox="0 0 24 24" width="64" height="64">
-        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
-      </svg>
-      <h2>No current flat</h2>
-      <p>You don't have a current flat set up yet.</p>
-      <button class="primary-button">Add Current Flat</button>
+    <div class="property-card list-view">
+      <div class="property-image">
+        <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg" alt="530 Leith Street">
+        <div class="property-rating">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+          </svg>
+          4.5
+        </div>
+      </div>
+      <div class="property-info">
+        <h2 class="property-title">530 Leith Street</h2>
+        <p class="property-price">$235 per room/week</p>
+        <div class="property-features">
+          <div class="feature">
+            <svg viewBox="0 0 24 24">
+              <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V7H1v10h22v-6c0-2.21-1.79-4-4-4z"></path>
+            </svg>
+            <span>5 beds</span>
+          </div>
+          <div class="feature">
+            <svg viewBox="0 0 24 24">
+              <path d="M7 7c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm5.05 1.55c.24.41.45.85.6 1.31.18-.66.46-1.27.84-1.82.23.33.57.6.96.78-.42.26-.78.62-1.06 1.03-.75-.87-1.86-1.44-3.12-1.44-1.4 0-2.62.7-3.37 1.76-.37-.23-.66-.55-.85-.95.9-.73 1.68-1.27 2.33-1.62.32.32.77.53 1.27.53s.95-.19 1.27-.53c.32.32.77.53 1.27.53s.95-.19 1.27-.53c.07.07.15.13.23.18zm-4.53 3.05c-.73-.73-1.92-.73-2.65 0L2.95 16.2c-.39.4-.39 1.05 0 1.45.4.39 1.05.39 1.45 0l.65-.65v3h8v-3l2.4 2.4c.39.4 1.05.4 1.45 0 .39-.4.39-1.05 0-1.45l-4.65-4.65c-.38-.38-1-.56-1.55-.56-.56 0-1.18.18-1.55.55l-.1.1v-1.3c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v1.3l-.1-.1z"></path>
+            </svg>
+            <span>2 showers</span>
+          </div>
+          <div class="feature">
+            <svg viewBox="0 0 24 24">
+              <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"></path>
+            </svg>
+            <span>2 car parks</span>
+          </div>
+        </div>
+        <div class="property-tags">
+          <span class="tag">Furnished</span>
+          <span class="tag">Heat pump</span>
+          <span class="tag">Fiber internet</span>
+        </div>
+      </div>
+      <div class="property-actions">
+        <button class="action-button info" aria-label="More information">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+          </svg>
+        </button>
+        <button class="action-button share" aria-label="Share this property">
+          <svg viewBox="0 0 24 24">
+            <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"></path>
+          </svg>
+        </button>
+      </div>
     </div>
   `;
   
   container.appendChild(content);
-  
-  // Add event listeners
-  const addFlatButton = content.querySelector('.primary-button');
-  if (addFlatButton) {
-    addFlatButton.addEventListener('click', () => {
-      showToast('Current flat setup coming soon!');
+
+  // Add event listeners for the action buttons
+  const infoButton = content.querySelector('.action-button.info');
+  const shareButton = content.querySelector('.action-button.share');
+
+  if (infoButton) {
+    infoButton.addEventListener('click', () => {
+      showToast('Flat details coming soon!');
+    });
+  }
+
+  if (shareButton) {
+    shareButton.addEventListener('click', () => {
+      showToast('Share functionality coming soon!');
     });
   }
 }
