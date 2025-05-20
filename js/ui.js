@@ -3,6 +3,7 @@ import { populateMainPage } from './pages/main.js';
 import { populateLikedPage } from './pages/liked.js';
 import { populateGroupPage } from './pages/group.js';
 import { populateAccountPage } from './pages/account.js';
+import { showPropertyDetails } from './pages/main.js';
 
 // Initialize UI components
 export function initUI() {
