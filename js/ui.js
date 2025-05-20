@@ -652,3 +652,35 @@ export function showSettingsOverlay() {
   // Show overlay
   settingsOverlay.classList.add('show');
 }
+
+// Show profile edit overlay
+export function showProfileEditOverlay(userProfile) {
+  // Create profile edit overlay if it doesn't exist
+  let profileEditOverlay = document.querySelector('.profile-edit-overlay');
+  
+  if (!profileEditOverlay) {
+    profileEditOverlay = document.createElement('div');
+    profileEditOverlay.className = 'profile-edit-overlay';
+    profileEditOverlay.innerHTML = `
+      <div class="profile-edit-header">
+        <button class="back-button" aria-label="Go back">
+          <svg viewBox="0 0 24 24">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+          </svg>
+        </button>
+        <h2>Edit Profile</h2>
+      </div>
+      <div class="profile-edit-content">
+        <div class="profile-edit-avatar">
+          <img src="${userProfile.avatar}" alt="${userProfile.name}">
+          <button class="change-avatar-button">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path>
+            </svg>
+            Change Photo
+          </button>
+        </div>
+        
+        <div class="profile-edit-form">
+          <div class="form-group">
+            <label>Full Name</label>
