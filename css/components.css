@@ -720,6 +720,7 @@
   font-size: var(--font-size-xs);
   color: var(--color-text-light);
 }
+}
 
 /* Toggle switch */
 .toggle {
