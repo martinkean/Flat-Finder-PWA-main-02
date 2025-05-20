@@ -745,3 +745,42 @@ input:checked + .toggle-slider:before {
   height: 20px;
   fill: currentColor;
 }
+
+/* Property Map */
+.property-map {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: calc(65px + env(safe-area-inset-bottom));
+  z-index: 4;
+  background: white;
+}
+
+.property-map.hidden {
+  display: none;
+}
+
+.map-popup {
+  padding: var(--spacing-sm);
+  text-align: center;
+}
+
+.map-popup h3 {
+  font-size: var(--font-size-md);
+  margin-bottom: var(--spacing-xs);
+}
+
+.map-popup p {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-sm);
+}
+
+.map-popup button {
+  background: var(--color-primary);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+}

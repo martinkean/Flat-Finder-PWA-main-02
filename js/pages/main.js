@@ -1,6 +1,8 @@
 // Main page module for property browsing
 import { getFromStorage, saveToStorage, addToStorageArray } from '../storage.js';
 import { createPropertyCard, showToast } from '../ui.js';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 
 // Populate the main page with content
 export function populateMainPage() {
@@ -131,6 +133,62 @@ function addMapButton(container) {
   
   // Add to container
   container.appendChild(mapButton);
+  
+  // Add map container
+  const mapContainer = document.createElement('div');
+  mapContainer.id = 'property-map';
+  mapContainer.className = 'property-map hidden';
+  container.appendChild(mapContainer);
+  
+  // Add event listener
+  mapButton.addEventListener('click', () => toggleMap(container));
+}
+
+// Toggle map view
+function toggleMap(container) {
+  const mapContainer = container.querySelector('#property-map');
+  const isHidden = mapContainer.classList.contains('hidden');
+  
+  if (isHidden) {
+    // Show map
+    mapContainer.classList.remove('hidden');
+    initMap(mapContainer);
+  } else {
+    // Hide map
+    mapContainer.classList.add('hidden');
+  }
+}
+
+// Initialize map
+function initMap(container) {
+  // Get properties
+  const properties = getFromStorage('properties') || [];
+  
+  // Create map centered on Dunedin
+  const map = L.map(container).setView([-45.8742, 170.5036], 15);
+  
+  // Add OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+  
+  // Add markers for each property
+  properties.forEach(property => {
+    // In a real app, you would use actual coordinates
+    // Here we're adding some random offset for demonstration
+    const lat = -45.8742 + (Math.random() - 0.5) * 0.01;
+    const lng = 170.5036 + (Math.random() - 0.5) * 0.01;
+    
+    const marker = L.marker([lat, lng])
+      .addTo(map)
+      .bindPopup(`
+        <div class="map-popup">
+          <h3>${property.title}</h3>
+          <p>${property.price}</p>
+          <button onclick="showPropertyDetails(${property.id})">View Details</button>
+        </div>
+      `);
+  });
 }
 
 // Like a property
