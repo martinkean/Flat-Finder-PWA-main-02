@@ -232,6 +232,91 @@ function checkForMoreCards() {
 export function showPropertyDetails(propertyId) {
   console.log(`Showing details for property ${propertyId}`);
   
+  // Get the property
+  const properties = getFromStorage('properties') || [];
+  const property = properties.find(p => p.id === propertyId);
+  
+  if (!property) return;
+  
+  // Create overlay if it doesn't exist
+  let detailsOverlay = document.querySelector('.property-details-overlay');
+  
+  if (!detailsOverlay) {
+    detailsOverlay = document.createElement('div');
+    detailsOverlay.className = 'property-details-overlay';
+    document.body.appendChild(detailsOverlay);
+  }
+  
+  // Update overlay content
+  detailsOverlay.innerHTML = `
+    <div class="property-details-header">
+      <h2>${property.title}</h2>
+      <button class="property-details-close">
+        <svg viewBox="0 0 24 24">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="property-details-content">
+      <div class="property-details-gallery">
+        <img src="${property.image}" alt="${property.title}">
+        <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg" alt="Interior">
+        <img src="https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg" alt="Kitchen">
+        <img src="https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg" alt="Bathroom">
+      </div>
+      
+      <div class="property-details-info">
+        <div class="property-details-stats">
+          <div class="property-details-stat">
+            <div class="property-details-stat-value">${property.features.beds}</div>
+            <div class="property-details-stat-label">Bedrooms</div>
+          </div>
+          <div class="property-details-stat">
+            <div class="property-details-stat-value">${property.features.showers}</div>
+            <div class="property-details-stat-label">Bathrooms</div>
+          </div>
+          <div class="property-details-stat">
+            <div class="property-details-stat-value">${property.features.parking}</div>
+            <div class="property-details-stat-label">Car Parks</div>
+          </div>
+          <div class="property-details-stat">
+            <div class="property-details-stat-value">${property.rating}</div>
+            <div class="property-details-stat-label">Rating</div>
+          </div>
+        </div>
+        
+        <div class="property-details-description">
+          <h3>About this property</h3>
+          <p>Recently renovated student flat in prime North Dunedin location. Features include new heat pumps in all bedrooms, full insulation, and modern appliances. The property has been fully rewired and replumbed in 2023.</p>
+        </div>
+        
+        <div class="property-details-agency">
+          <div class="property-details-agency-logo">
+            ${property.agency}
+          </div>
+          <div>
+            <h3>${property.agency} Realty</h3>
+            <p>Premier student accommodation provider</p>
+          </div>
+        </div>
+        
+        <div class="property-details-meta">
+          <div>Listed 2 days ago</div>
+          <div>128 people interested</div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Add close button handler
+  const closeButton = detailsOverlay.querySelector('.property-details-close');
+  closeButton.addEventListener('click', () => {
+    detailsOverlay.classList.remove('show');
+  });
+  
+  // Show overlay
+  detailsOverlay.classList.add('show');
+  
   // For now, just show a toast
   showToast('Property details coming soon!');
 }
