@@ -10,7 +10,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   margin: var(--spacing-xs) auto;
   width: 100%;
-  max-width: min(480px, calc(100vw - var(--spacing-md)));
+  max-width: 480px;
   touch-action: none;
   user-select: none;
 }
@@ -73,9 +73,9 @@
 
 .card-stack {
   position: relative;
-  height: min(400px, calc(100vh - 180px));
+  height: 400px;
   margin: 0 auto;
-  max-width: min(300px, calc(100vw - var(--spacing-md)));
+  max-width: 300px;
   padding: 0 var(--spacing-sm);
 }
 
@@ -104,7 +104,7 @@
 
 .property-image {
   position: relative;
-  height: min(180px, 50vw);
+  height: 180px;
   overflow: hidden;
 }
 
@@ -152,11 +152,10 @@
 
 .property-info {
   padding: var(--spacing-sm);
-  font-size: clamp(14px, 3.5vw, 16px);
 }
 
 .property-title {
-  font-size: clamp(var(--font-size-lg), 4vw, var(--font-size-xl));
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--spacing-xs);
   color: var(--color-text);
@@ -219,8 +218,8 @@
 }
 
 .action-button {
-  width: clamp(40px, 12vw, 48px);
-  height: clamp(40px, 12vw, 48px);
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
