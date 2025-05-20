@@ -8,7 +8,9 @@
   overflow: hidden;
   box-shadow: var(--shadow-md);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 0 auto;
+  margin: var(--spacing-xs) auto;
+  width: 100%;
+  max-width: 480px;
 }
 
 .property-card:hover {
@@ -197,8 +199,8 @@
 }
 
 .action-button {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -206,6 +208,7 @@
   background-color: var(--color-surface);
   box-shadow: var(--shadow-sm);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  touch-action: manipulation;
 }
 
 .action-button:hover {
@@ -720,7 +723,7 @@ input:checked + .toggle-slider:before {
 /* Map button */
 .map-button {
   position: fixed;
-  bottom: 80px;
+  bottom: calc(65px + env(safe-area-inset-bottom) + var(--spacing-md));
   left: 50%;
   transform: translateX(-50%);
   background-color: var(--color-surface);
@@ -732,6 +735,8 @@ input:checked + .toggle-slider:before {
   align-items: center;
   gap: var(--spacing-sm);
   z-index: 5;
+  height: 44px;
+  min-width: 120px;
 }
 
 .map-button svg {
