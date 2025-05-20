@@ -157,32 +157,56 @@ function addPropertyCardEventListeners(card) {
   // Touch events for swiping
   let startX = 0;
   let startY = 0;
-  let moveX = 0;
-  let moveY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let initialRotation = 0;
   
   card.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
+    card.classList.add('swiping');
   });
   
   card.addEventListener('touchmove', (e) => {
-    moveX = e.touches[0].clientX;
-    moveY = e.touches[0].clientY;
+    currentX = e.touches[0].clientX;
+    currentY = e.touches[0].clientY;
     
-    const deltaX = moveX - startX;
-    const deltaY = moveY - startY;
+    const deltaX = currentX - startX;
+    const deltaY = currentY - startY;
+    const rotation = deltaX * 0.1;
     
-    // Only allow horizontal swiping if the movement is more horizontal than vertical
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-      e.preventDefault();
-      card.style.transform = `translateX(${deltaX}px) rotate(${deltaX * 0.1}deg)`;
+    // Determine swipe direction
+    if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY < -50) {
+      // Swiping up
+      card.classList.add('swiping-up');
+      card.style.transform = `translateY(${deltaY}px)`;
+    } else {
+      // Swiping left/right
+      card.style.transform = `translateX(${deltaX}px) rotate(${rotation}deg)`;
+      
+      if (deltaX > 50) {
+        card.classList.add('swiping-right');
+        card.classList.remove('swiping-left');
+      } else if (deltaX < -50) {
+        card.classList.add('swiping-left');
+        card.classList.remove('swiping-right');
+      } else {
+        card.classList.remove('swiping-right', 'swiping-left');
+      }
     }
   });
   
   card.addEventListener('touchend', (e) => {
-    const deltaX = moveX - startX;
+    const deltaX = currentX - startX;
+    const deltaY = currentY - startY;
     
-    if (deltaX > 100) {
+    card.classList.remove('swiping');
+    
+    if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY < -100) {
+      // Swiped up - show details
+      const propertyId = parseInt(card.dataset.id);
+      showPropertyDetails(propertyId);
+    } else if (deltaX > 100) {
       // Swiped right (like)
       card.classList.add('swipe-right');
       const propertyId = parseInt(card.dataset.id);
@@ -195,8 +219,87 @@ function addPropertyCardEventListeners(card) {
     } else {
       // Reset position
       card.style.transform = '';
+      card.classList.remove('swiping-right', 'swiping-left', 'swiping-up');
     }
   });
+}
+
+// Show property details
+function showPropertyDetails(propertyId) {
+  // Get property data
+  const properties = getFromStorage('properties') || [];
+  const property = properties.find(p => p.id === propertyId);
+  
+  if (!property) return;
+  
+  // Create details modal if it doesn't exist
+  let detailsModal = document.querySelector('.property-details');
+  
+  if (!detailsModal) {
+    detailsModal = document.createElement('div');
+    detailsModal.className = 'property-details';
+    
+    detailsModal.innerHTML = `
+      <div class="details-header">
+        <h2>Property Details</h2>
+        <button class="details-close">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="details-content">
+        <div class="details-gallery">
+          <div class="gallery-image">
+            <img src="${property.image}" alt="${property.title}">
+          </div>
+          <div class="gallery-image">
+            <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg" alt="Interior">
+          </div>
+          <div class="gallery-image">
+            <img src="https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg" alt="Kitchen">
+          </div>
+        </div>
+        
+        <h1 class="property-title">${property.title}</h1>
+        <p class="property-price">${property.price}</p>
+        
+        <div class="details-meta">
+          <span>Listed 2 days ago</span>
+          <span>•</span>
+          <span>12 people interested</span>
+        </div>
+        
+        <div class="property-features">
+          <!-- Features from card -->
+        </div>
+        
+        <div class="details-description">
+          <h3>About this property</h3>
+          <p>Recently renovated student flat in prime North Dunedin location. New heat pump installed in 2023. Fiber internet ready. Large shared living space and modern kitchen. Fully insulated and double glazed throughout.</p>
+        </div>
+        
+        <div class="details-agency">
+          <div class="agency-logo">${property.agency}</div>
+          <div>
+            <h3>Listed by ${property.agency}</h3>
+            <p>Premier student accommodation provider</p>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(detailsModal);
+    
+    // Add close button handler
+    const closeButton = detailsModal.querySelector('.details-close');
+    closeButton.addEventListener('click', () => {
+      detailsModal.classList.remove('show');
+    });
+  }
+  
+  // Show modal
+  detailsModal.classList.add('show');
 }
 
 // Like a property
