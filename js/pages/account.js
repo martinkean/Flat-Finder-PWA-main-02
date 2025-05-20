@@ -1,6 +1,6 @@
 // Account page module
 import { getFromStorage, saveToStorage } from '../storage.js';
-import { showToast, showSettingsOverlay } from '../ui.js';
+import { showToast, showSettingsOverlay } from '../ui.jsx';
 
 // Populate the account page with content
 export function populateAccountPage() {
@@ -183,7 +183,7 @@ function loadProfileTab(container, userProfile) {
   const editButton = content.querySelector('.profile-edit');
   if (editButton) {
     editButton.addEventListener('click', () => {
-      import('../ui.js').then(module => {
+      import('../ui.jsx').then(module => {
         module.showProfileEditOverlay(userProfile);
       });
     });
@@ -352,7 +352,8 @@ function setupSmartVaultEventListeners(container) {
   const toggle = container.querySelector('.toggle input');
   if (toggle) {
     toggle.addEventListener('change', () => {
-      const status = toggle.checked ? 'enabled' : 'disabled';
+      const status = toggle.checke
+d ? 'enabled' : 'disabled';
       showToast(`Auto-fill ${status}`);
     });
   }
