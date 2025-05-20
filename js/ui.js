@@ -109,9 +109,9 @@ export function createPropertyCard(property, isStack = false) {
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
         </svg>
       </button>
-      <button class="action-button dislike" aria-label="Dislike this property">
+      <button class="action-button apply" aria-label="Apply for this property">
         <svg viewBox="0 0 24 24">
-          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
         </svg>
       </button>
     </div>
@@ -135,13 +135,13 @@ function addPropertyCardEventListeners(card) {
     });
   }
   
-  // Dislike button
-  const dislikeButton = card.querySelector('.action-button.dislike');
-  if (dislikeButton) {
-    dislikeButton.addEventListener('click', (e) => {
+  // Apply button
+  const applyButton = card.querySelector('.action-button.apply');
+  if (applyButton) {
+    applyButton.addEventListener('click', (e) => {
       e.stopPropagation();
       const propertyId = parseInt(card.dataset.id);
-      dislikeProperty(propertyId, card);
+      showToast('Application feature coming soon!');
     });
   }
   
