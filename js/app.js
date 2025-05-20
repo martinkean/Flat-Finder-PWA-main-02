@@ -1,6 +1,6 @@
 // Import all modules
 import { initStorage, getFromStorage, saveToStorage } from './storage.js';
-import { initUI, showPage } from './ui.jsx';
+import { initUI, showPage } from './ui.js';
 import { populateMainPage } from './pages/main.js';
 import { populateLikedPage } from './pages/liked.js';
 import { populateGroupPage } from './pages/group.js';
