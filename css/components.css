@@ -263,6 +263,11 @@
 
 .action-button.apply {
   color: var(--color-success);
+  background-color: var(--color-success-light);
+}
+
+.action-button.apply {
+  color: var(--color-success);
 }
 
 .action-button svg {
