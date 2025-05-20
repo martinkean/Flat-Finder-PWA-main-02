@@ -49,6 +49,14 @@ function setupHeader(container) {
   
   // Add to container
   container.appendChild(header);
+  
+  // Add settings button handler
+  const settingsButton = header.querySelector('.icon-button');
+  if (settingsButton) {
+    settingsButton.addEventListener('click', () => {
+      showSettingsOverlay();
+    });
+  }
 }
 
 // Set up account tabs
@@ -530,44 +538,4 @@ function loadCurrentFlatTab(container, userProfile) {
         messageElement.className = 'message message-sent';
         const now = new Date();
         messageElement.innerHTML = `
-          <p>${message}</p>
-          <p class="message-meta">Me, just now</p>
-        `;
-        chatMessages.appendChild(messageElement);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        chatInput.value = '';
-      }
-    };
-
-    chatSendButton.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        sendMessage();
-      }
-    });
-  }
-
-  // Add event listeners for the action buttons
-  const infoButton = content.querySelector('.action-button.info');
-  const shareButton = content.querySelector('.action-button.share');
-
-  if (infoButton) {
-    infoButton.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const propertyId = userProfile.documents.flattingHistory && userProfile.documents.flattingHistory.length > 0 
-        ? userProfile.documents.flattingHistory[0].id 
-        : null;
-      if (propertyId) {
-        showPropertyDetails(propertyId);
-      } else {
-        showToast('Property details not available');
-      }
-    });
-  }
-
-  if (shareButton) {
-    shareButton.addEventListener('click', () => {
-      showToast('Share functionality coming soon!');
-    });
-  }
-}
+          <p
