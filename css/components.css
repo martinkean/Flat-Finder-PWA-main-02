@@ -796,18 +796,28 @@ input:checked + .toggle-slider:before {
   position: absolute;
   transform: translate(-50%, -50%);
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.map-marker:hover {
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
 .map-marker-content {
   background-color: var(--color-surface);
   border-radius: var(--radius-lg);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: var(--spacing-sm);
   box-shadow: var(--shadow-md);
   font-weight: var(--font-weight-medium);
   font-size: var(--font-size-sm);
   white-space: nowrap;
+  text-align: center;
+  min-width: 120px;
 }
 
 .map-marker-price {
   color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-md);
+  margin-bottom: var(--spacing-xs);
 }
