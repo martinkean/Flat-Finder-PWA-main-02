@@ -1,6 +1,6 @@
 // Main page module for property browsing
 import { getFromStorage, saveToStorage, addToStorageArray } from '../storage.js';
-import { createPropertyCard, showToast } from '../ui.js';
+import { createPropertyCard, showToast, showMapOverlay } from '../ui.js';
 
 // Populate the main page with content
 export function populateMainPage() {
