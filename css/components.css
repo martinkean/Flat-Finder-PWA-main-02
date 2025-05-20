@@ -735,6 +735,7 @@ input:checked + .toggle-slider:before {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
+  justify-content: center;
   z-index: 5;
   height: 36px;
   min-width: 100px;
@@ -744,6 +745,11 @@ input:checked + .toggle-slider:before {
   width: 18px;
   height: 18px;
   fill: currentColor;
+  flex-shrink: 0;
+}
+
+.map-button span {
+  text-align: center;
 }
 
 /* Map overlay */
