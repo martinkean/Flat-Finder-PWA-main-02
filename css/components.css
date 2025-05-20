@@ -623,85 +623,102 @@
 /* Group dropdown */
 .group-dropdown {
   position: relative;
-  display: flex;
-  align-items: center;
+  display: inline-block;
 }
 
 .group-dropdown button {
-  background: transparent;
+  background: var(--color-surface);
   color: var(--color-text);
   font-size: var(--font-size-sm);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-md);
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  min-width: 140px;
+  justify-content: space-between;
 }
 
 .group-dropdown button:hover {
-  background: var(--color-divider);
+  border-color: var(--color-primary);
 }
 
 .group-dropdown button svg {
   width: 16px;
   height: 16px;
   fill: currentColor;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease;
 }
 
 .group-dropdown.active button svg {
   transform: rotate(180deg);
+  color: var(--color-primary);
 }
 
 .group-dropdown-content {
   display: none;
   position: absolute;
-  right: 0;
+  left: 0;
   top: 100%;
   background-color: var(--color-surface);
-  min-width: 180px;
+  min-width: 100%;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   z-index: 1000;
   margin-top: var(--spacing-xs);
   padding: var(--spacing-xs);
   border: 1px solid var(--color-border);
+  transform-origin: top center;
 }
 
 .group-dropdown-content.show {
   display: block;
-  animation: fadeIn 0.2s ease;
+  animation: dropdownShow 0.3s ease;
+}
+
+@keyframes dropdownShow {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .group-item {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: var(--spacing-sm);
   color: var(--color-text);
   border-radius: var(--radius-md);
   transition: background-color 0.2s ease;
   font-size: var(--font-size-sm);
+  width: 100%;
+  text-align: left;
 }
 
 .group-item:hover {
   background-color: var(--color-primary-bg);
   cursor: pointer;
+  color: var(--color-primary);
 }
 
 .group-item-info {
   flex: 1;
+  line-height: 1.4;
 }
 
 .group-item-name {
   font-weight: var(--font-weight-medium);
-  margin-bottom: 2px;
 }
 
 .group-item-members {
   font-size: var(--font-size-xs);
   color: var(--color-text-light);
-}
 
 /* Toggle switch */
 .toggle {
